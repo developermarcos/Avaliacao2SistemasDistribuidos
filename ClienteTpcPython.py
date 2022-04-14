@@ -2,14 +2,7 @@ import socket
 import threading
 
 def Main():
-    # cria o socket TCP do cliente, abrindo uma porta alta
-    mySocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # define o endereço e porta do servidor de destino
-    servidorDestino = ('127.0.0.1', 10000)
-    
-    #realiza a conexao com o servidor
-    # cria e dispara a execução da thread para o servidor
-    mySocket.connect(servidorDestino)
+    mySocket = createConection('127.0.0.1', 10000)
     t = threading.Thread(target=receiveMesages, args=(mySocket,))
     t.start()
     # fica em loop enviando e recebendo mensagens com o servidor
@@ -20,6 +13,17 @@ def Main():
             break
 
     mySocket.close()
+
+def createConection(host, port):
+    # cria o socket TCP do cliente, abrindo uma porta alta
+    mySocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # define o endereço e porta do servidor de destino
+    servidorDestino = (host, port)
+    
+    #realiza a conexao com o servidor
+    # cria e dispara a execução da thread para o servidor
+    mySocket.connect(servidorDestino)
+    return mySocket
 
 def receiveMesages(conn):
     while True:
