@@ -1,7 +1,7 @@
 import socket
 import threading
 
-def rodaThread(conn, arrayConexoes):
+def thread(conn, arrayConexoes):
     while True:
         print('Aguardando mensagens...')
         print(conn)
@@ -10,14 +10,12 @@ def rodaThread(conn, arrayConexoes):
         if not data:
             break
         print('Recebido {} bytes de {}'.format(len(data), conn.getpeername()))
-        # devolve a mensagem para o cliente
-        #conn.send(data.upper())
-        enviarMensagens(arrayConexoes, conn, data)
+        broadcast(arrayConexoes, conn, data)
 
     conn.close()
     return
 
-def enviarMensagens(arrayConexoes, conn, data):
+def broadcast(arrayConexoes, conn, data):
 
     for conexao in arrayConexoes:
         if conn.getpeername() != conexao.getpeername():
@@ -46,7 +44,7 @@ def Main():
         arrayConexoes.append(conn)
         
         # cria e dispara a execução da thread do cliente
-        t = threading.Thread(target=rodaThread, args=(conn, arrayConexoes))
+        t = threading.Thread(target=thread, args=(conn, arrayConexoes))
         t.start()
 
     socket.close()
