@@ -1,3 +1,4 @@
+import logging
 from Model import ModelServidor
 host = '0.0.0.0'
 port= 10000
