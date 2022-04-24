@@ -1,0 +1,13 @@
+########## LOG ##########
+24/04/2022; 16:54; 0.0.0.0; patricia; 127.0.0.1 50303; ; Todos clientes; logout
+24/04/2022; 16:54; 0.0.0.0; patricia; 127.0.0.1 50303; 127.0.0.1; Marcos; tesmensagem teste
+24/04/2022; 16:54; 0.0.0.0; patricia; 127.0.0.1 50303; ; Servidor; login
+24/04/2022; 16:54; 0.0.0.0; Marcos; 127.0.0.1 50294; ; Todos clientes; logout
+24/04/2022; 16:53; 0.0.0.0; Marcos; 127.0.0.1 50294; ; Todos clientes; teste
+24/04/2022; 16:53; 0.0.0.0; Marcos; 127.0.0.1 50294; ; Servidor; login
+24/04/2022; 16:51; 0.0.0.0; Marcos; 127.0.0.1 50274; ; Todos clientes; teste
+24/04/2022; 16:51; 0.0.0.0; Marcos; 127.0.0.1 50274; ; Servidor; login
+24/04/2022; 16:49; 0.0.0.0; Marcos; 127.0.0.1 50168; 127.0.0.1; Patricia; Oi patrícia
+24/04/2022; 16:48; 0.0.0.0; Patricia; 127.0.0.1 50158; ; Todos clientes; Oi para todos os logados
+24/04/2022; 16:48; 0.0.0.0; Marcos; 127.0.0.1 50168; ; Servidor; login
+24/04/2022; 16:48; 0.0.0.0; Patricia; 127.0.0.1 50158; ; Servidor; login
