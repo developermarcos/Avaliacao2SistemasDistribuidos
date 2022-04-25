@@ -11,6 +11,8 @@ from tkinter import messagebox, filedialog, Tk
 from compartilhado.mensagem import Mensagem
 #from tkinter.ttk import Frame, Button, Label, Style
 
+import os
+
 
 class TelaAplicacao(Frame):
    
@@ -138,7 +140,31 @@ class TelaAplicacao(Frame):
                 self.destinatario = ''
 
     def enviarArquivo(self):
-        messagebox.showwarning("Enviar Arquivo", "Arquivo enviado")
+        nomeDestinatario = ''
+        tipo = 'arquivo'
+        if self.destinatario != '':
+                nomeDestinatario = self.destinatario
+
+        mensagemArquivo = Mensagem(self.nome,"",tipo,'',nomeDestinatario)
+
+        mensagemSerializada = self.serializador.serealizarObjeto(mensagemArquivo)
+
+        self.__EnviarMensagemSerealizadaServidor(mensagemSerializada)
+        # abre tela para escolha de um arquivo
+        root = Tk()
+        root.withdraw()
+        file_path = filedialog.askopenfilename(initialdir="/", title="Escolha um arquivo", filetypes=(("jpeg files", "*.jpg"), ("all files", "*.*")))
+        
+        # envia mensagem com o nome do arquivo que vai ser enviado
+        self.Conection.send(os.path.basename(file_path).encode())
+
+        messagebox.showinfo("Atenção", "Aperte OK quando todos os clientes selecionarem uma pasta")
+
+        #abre o arquivo escolhido, e vai enviando para o cliente por partes
+        with open( file_path , 'rb') as f:
+            self.Conection.sendfile(f, 0)
+            
+        print('Arquivo enviado.')
 
     def receiveMesages(self):
         try:
@@ -158,8 +184,7 @@ class TelaAplicacao(Frame):
                     
                     if tipo == 'mensagem':
                         self.__populaTxtMsgRecebida(mensagemRecebida)
-                    elif tipo == 'arquivo':
-                        print('arquivo')
+                    
                     elif tipo == 'conectar' or tipo == 'desconectar':
                         print(tipo)
                         conectados = self.serializador.deserializarMensagem(mensagemRecebida.get("conectados"))
@@ -167,6 +192,25 @@ class TelaAplicacao(Frame):
                         self.__popularLabelConectados(conectados)
                         mensagem = 'Novo usuário conectado' if tipo == 'conectar' else 'Usuário desconectado'
                         messagebox.showinfo("Atenção", mensagem)
+
+                    elif tipo == 'arquivo':
+                        print('Arquivo')
+
+                        # recebe mensagem com o nome do arquivo que vai receber
+                        nomeArquivo = self.Conection.recv(1024)
+                        
+                        # cria um novo arquivo binário, vazio, para receber o arquivo enviado
+                        caminhoNomeArquivo = os.path.abspath(os.path.dirname(__file__))
+                        print(caminhoNomeArquivo)
+                        file = open(caminhoNomeArquivo+'/arquivos/new_'+nomeArquivo.decode(), "wb")
+                        # Receba as partes do arquivo e monta o arquivo
+                        RecvData = self.Conection.recv(1024)
+                        while RecvData:
+                            file.write(RecvData)
+                            RecvData = self.Conection.recv(1024)
+                        # Feche o arquivo aberto no lado do servidor uma vez que a cópia seja concluída
+                        file.close()
+                        print("\n O arquivo foi copiado com sucesso \n")
                 except:
                     break
         except:

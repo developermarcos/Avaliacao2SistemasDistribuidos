@@ -1,13 +1,12 @@
 ########## LOG ##########
-24/04/2022; 16:54; 0.0.0.0; patricia; 127.0.0.1 50303; ; Todos clientes; logout
-24/04/2022; 16:54; 0.0.0.0; patricia; 127.0.0.1 50303; 127.0.0.1; Marcos; tesmensagem teste
-24/04/2022; 16:54; 0.0.0.0; patricia; 127.0.0.1 50303; ; Servidor; login
-24/04/2022; 16:54; 0.0.0.0; Marcos; 127.0.0.1 50294; ; Todos clientes; logout
-24/04/2022; 16:53; 0.0.0.0; Marcos; 127.0.0.1 50294; ; Todos clientes; teste
-24/04/2022; 16:53; 0.0.0.0; Marcos; 127.0.0.1 50294; ; Servidor; login
-24/04/2022; 16:51; 0.0.0.0; Marcos; 127.0.0.1 50274; ; Todos clientes; teste
-24/04/2022; 16:51; 0.0.0.0; Marcos; 127.0.0.1 50274; ; Servidor; login
-24/04/2022; 16:49; 0.0.0.0; Marcos; 127.0.0.1 50168; 127.0.0.1; Patricia; Oi patrícia
-24/04/2022; 16:48; 0.0.0.0; Patricia; 127.0.0.1 50158; ; Todos clientes; Oi para todos os logados
-24/04/2022; 16:48; 0.0.0.0; Marcos; 127.0.0.1 50168; ; Servidor; login
-24/04/2022; 16:48; 0.0.0.0; Patricia; 127.0.0.1 50158; ; Servidor; login
+24/04/2022; 21:03; 0.0.0.0; Sabrina; 127.0.0.1 55954; ; Servidor; login
+24/04/2022; 21:02; 0.0.0.0; Sabrina; 127.0.0.1 55952; ; Todos clientes; logout
+24/04/2022; 21:02; 0.0.0.0; Sabrina; 127.0.0.1 55952; ; Servidor; login
+24/04/2022; 21:02; 0.0.0.0; marcos; 127.0.0.1 55747; ; Todos clientes; logout
+24/04/2022; 21:02; 0.0.0.0; marcos; 127.0.0.1 55747; ; Todos clientes; Teste
+24/04/2022; 21:02; 0.0.0.0; marcos; 127.0.0.1 55747; 127.0.0.1; Tio lu; Oi tio lu
+24/04/2022; 21:01; 0.0.0.0; marcos; 127.0.0.1 55747; ; Todos clientes; Mensagem para todos
+24/04/2022; 21:01; 0.0.0.0; Ze; 127.0.0.1 55750; ; Servidor; login
+24/04/2022; 21:01; 0.0.0.0; Tio lu; 127.0.0.1 55748; ; Servidor; login
+24/04/2022; 21:00; 0.0.0.0; marcos; 127.0.0.1 55747; ; Servidor; login
+

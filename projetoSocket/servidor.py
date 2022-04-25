@@ -2,6 +2,8 @@ import socket, json
 import threading
 from compartilhado import serializador, mensagem, conexao
 from datetime import datetime
+from tkinter import  filedialog
+import os
 
 class Servidor:
     def __init__(self):
@@ -114,7 +116,36 @@ class Servidor:
                 break
 
             elif tipoMensagem == 'arquivo':
-                print('Arquivo')         
+                print('Arquivo')
+                nomeDestinatario = ''
+                tipo = 'arquivo'
+                
+                mensagemArquivo = mensagem.Mensagem(mensagemRecebidaDeserializada.get("nome"),"",tipo,'',nomeDestinatario)
+
+                mensagemSerializada = self.serializador.serealizarObjeto(mensagemArquivo)
+
+                self.__broadcast(conn, mensagemSerializada, 'arquivo', '', '')
+
+
+                # recebe mensagem com o nome do arquivo que vai receber
+                nomeArquivo = conn.recv(1024)
+                for conexao in self.arrayConexoes:
+                    conexaoPosicao = conexao.conexao
+                    if conn.getpeername() != conexaoPosicao.getpeername():
+                        conexaoPosicao.send(os.path.basename(nomeArquivo))
+                #envia
+                
+                # Receba as partes do arquivo e monta o arquivo
+                RecvData = conn.recv(1024)
+                while RecvData:
+                    RecvData = conn.recv(1024)
+                    #envia
+                    for conexao in self.arrayConexoes:
+                        conexaoPosicao = conexao.conexao
+                        if conn.getpeername() != conexaoPosicao.getpeername():
+                            conexaoPosicao.sendfile(RecvData, 0)
+                
+                print("\n O arquivo foi copiado com sucesso \n")     
                 
         conn.close()
         return
